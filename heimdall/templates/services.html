@@ -1,0 +1,56 @@
+{% include 'header.html' %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <button class="navbar-item btn btn-outline-info">Add New Service</button>
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Find Service/Team" aria-label="Search">
+            <button class="btn btn-outline-info" type="submit">Find</button>
+          </form>
+    </div>
+</nav>
+
+
+<div class="container-fluid mt-4">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        {% for svc in svcs %}
+        <div class="col">
+            <div class="card bg-dark text-white" id="service-card">
+                <div class="card-header bg-info" id="service-card-head">{{svc['name']}} [{{svc['owner']}}]"</div>
+                <div class="card-body" id="service-card-body">
+                    <p class="card-text">"{{svc['description']}}"</p>
+                    <button type="button" class="btn btn-outline-info" data-service-id="{{svc['id']}}" data-bs-toggle="modal" data-bs-target="#moreModal">More</button>
+                    <a href="#" class="btn btn-outline-warning">Edit</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- More Service Info Modal -->
+<div class="modal fade" id="moreModal" tabindex="-1" aria-labelledby="moreModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title" id="ModalLabel">Service Detail</h5>
+        </div>
+        <div class="modal-body bg-dark text-white">
+          <p id="id"></p>
+        </div>
+        <div class="modal-footer bg-dark text-white">
+          <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+$('#moreModal').on('shown.bs.modal', function(event) {
+
+// The reference tag is your anchor tag here
+var reference_tag = $(event.relatedTarget); 
+var id = reference_tag.data('service-id')
+document.getElementById("id").innerHTML = id;
+})
+</script>

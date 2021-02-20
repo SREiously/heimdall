@@ -1,0 +1,17 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small;
+}
+
+body {
+    background-color: black;
+}
+
+#service-card {
+    border-color: white;
+}
+
+#service-card-head {
+    color: black;
+    font-weight: bolder;
+}
